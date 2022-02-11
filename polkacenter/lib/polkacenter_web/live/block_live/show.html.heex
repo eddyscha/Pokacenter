@@ -1,0 +1,31 @@
+<h1>Show Block</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.block_show_path(@socket, :show, @block)}>
+    <.live_component
+      module={PolkacenterWeb.BlockLive.FormComponent}
+      id={@block.id}
+      title={@page_title}
+      action={@live_action}
+      block={@block}
+      return_to={Routes.block_show_path(@socket, :show, @block)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Block hash:</strong>
+    <%= @block.block_hash %>
+  </li>
+
+  <li>
+    <strong>Author:</strong>
+    <%= @block.author %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.block_show_path(@socket, :edit, @block), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.block_index_path(@socket, :index) %></span>

@@ -17,9 +17,11 @@ const api = await ApiPromise.create({ provider: wsProvider });
 api.derive.chain.subscribeNewHeads(async (header) => {
     console.log(`${header.hash.toString()}: ${header.author}`);
 
+    let date = new Date();
+
     await client.query('BEGIN')
-    const queryText = 'INSERT INTO blocks(block_hash, author) VALUES($1, $2)'
-    const queryValues = [header.hash.toString(), header.author.toString()]
+    const queryText = 'INSERT INTO blocks(block_hash, author, inserted_at, updated_at) VALUES($1, $2, $3, $4)'
+    const queryValues = [header.hash.toString(), header.author.toString(), date.toUTCString(), date.toUTCString()]
     await client.query(queryText, queryValues)
     await client.query('COMMIT')
 
