@@ -1,0 +1,13 @@
+{
+  "name": "Polkaball",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/eddyscha/Polkacenter/Polkaball",
+  "author": "eddyscha <eddy@eddyscha.com>",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "@polkadot/api": "^7.7.1",
+    "pg": "^8.7.3"
+  }
+}
